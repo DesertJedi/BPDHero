@@ -30,4 +30,4 @@ google-services.json
 *.hprof
 
 # PHP Mysql config info
-/api/inc
+/api/inc/
