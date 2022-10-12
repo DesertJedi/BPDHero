@@ -41,8 +41,14 @@ class UserModel extends Database
     }
 
     public function hashPassword($password){
-        $opts04 = [ "cost" => 15, "salt" => "kljf32k234jlk54sdvfjs321oiede" ]; // Maybe move to db
+        $salt = $this->getSalt();
+//         echo $salt[0]["value"];
+        $opts04 = [ "cost" => 12, "salt" => $salt[0]["value"] ];
         $hashp04 = password_hash($password, PASSWORD_BCRYPT, $opts04);
         return $hashp04;
+    }
+
+    public function getSalt(){
+        return $this->selectOne("SELECT value FROM meta WHERE resource='salt'");
     }
 }

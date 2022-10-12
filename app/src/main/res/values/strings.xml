@@ -21,5 +21,6 @@
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
     <string name="username">User Name</string>
+    <string name="registerTagLine">Become a BPD Hero!</string>
     <string name="desc"/>
 </resources>
