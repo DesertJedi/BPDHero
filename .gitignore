@@ -32,3 +32,4 @@ google-services.json
 # PHP Mysql config info
 /api/inc/
 /api/test/
+/api/utils/authenticate.php
