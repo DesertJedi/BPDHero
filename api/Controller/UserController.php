@@ -50,7 +50,7 @@ class UserController extends BaseController
             $requestMethod = $_SERVER["REQUEST_METHOD"];
             parse_str($_SERVER['QUERY_STRING'], $arrQueryStringParams); // $this->getQueryStringParams() isn't working in this method so changed to this
 
-            if (strtoupper($requestMethod) == 'GET') { //TODO: Change to post in the app
+            if (strtoupper($requestMethod) == 'POST') { //TODO: Change to post in the app
 
                 try {
                     $userModel = new UserModel();
