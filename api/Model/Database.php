@@ -30,24 +30,37 @@ class Database
         return false;
     }
 
-    public function insert($query = "")
-        {
-            try {
-                $stmt = $this->connection->prepare( $query );
-
-                if($stmt === false) {
-                    throw New Exception("Unable to do prepared statement: " . $query);
-                }
-
-                $stmt->execute();
-                $stmt->close();
-
-                return "User added"; //TODO: Add logic to verify user was added
-            } catch(Exception $e) {
-                throw New Exception( $e->getMessage() );
-            }
-            return false;
+    public function selectOne($query = "", $params = [])
+    {
+        try {
+            $stmt = $this->executeStatement( $query , $params );
+            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            return $result;
+        } catch(Exception $e) {
+            throw New Exception( $e->getMessage() );
         }
+        return false;
+    }
+
+    public function insert($query = "")
+    {
+        try {
+            $stmt = $this->connection->prepare( $query );
+
+            if($stmt === false) {
+                throw New Exception("Unable to do prepared statement: " . $query);
+            }
+
+            $stmt->execute();
+            $stmt->close();
+
+            return "User added"; //TODO: Add logic to verify user was added
+        } catch(Exception $e) {
+            throw New Exception( $e->getMessage() );
+        }
+        return false;
+    }
 
     private function executeStatement($query = "" , $params = [])
     {
